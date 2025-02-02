@@ -2,7 +2,9 @@
 package com.rays.ctl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,24 +21,26 @@ import com.rays.service.CartServiceInt;
 @RequestMapping(value = "Cart")
 public class CartCtl extends BaseCtl<CartForm, CartDTO, CartServiceInt> {
 	
-	@GetMapping("/preload")
-	public ORSResponse preload() {
-		System.out.println("Inside preload");
-		ORSResponse res = new ORSResponse(true);
-		CartDTO dto = new CartDTO();
-		List list = new ArrayList<>();
-		list.add("Fridge");
-		list.add("washing Machine");
-		list.add("Laptop");
-		res.addResult("Cartlist", list);
+	  @GetMapping("/preload")
+	    public ORSResponse preload() {
+	        ORSResponse res = new ORSResponse(true);
 
-		/*
-		 * List list1 = new ArrayList<>(); list1.add("2020-01-01");
-		 * list1.add("2015-03-09"); list1.add("2010-10-09");
-		 * res.addResult("Cartlist2", list1);
-		 */
+	        HashMap<Integer, String> productMap = new HashMap<>();
+	        productMap.put(1, "Fridge");
+	        productMap.put(2, "Washing Machine");
+	        productMap.put(3, "Tv");
+	       
 
-		return res;
-	}
+	        List<Map<String, Object>> productList = new ArrayList<>();
+	        productMap.forEach((key, value) -> {
+	            Map<String, Object> item = new HashMap<>();
+	            item.put("key", key);
+	            item.put("value", value);
+	            productList.add(item);
+	        });
 
+	        res.addResult("productList", productList);
+
+	        return res;
+	    }
 }

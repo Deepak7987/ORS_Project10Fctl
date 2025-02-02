@@ -72,7 +72,7 @@
                 </div>
                 <select class="form-control" name="product" [(ngModel)]="form.data.product" aria-label="ngSelected">
                   <option [ngValue]="undefined">{{ 'Select product' | translate }}</option>
-                  <option *ngFor="let product of form.preload.Cartlist" [value]="product">{{ product }}</option>
+                  <option *ngFor="let product of form.preload.productList" [value]="product.key">{{ product.value }}</option>
                 </select>
               </div>
               <span *ngIf="form.inputerror.product" class="alertRedColor">{{ form.inputerror.product }}</span>
