@@ -28,7 +28,7 @@ public class CartCtl extends BaseCtl<CartForm, CartDTO, CartServiceInt> {
 	        HashMap<Integer, String> productMap = new HashMap<>();
 	        productMap.put(1, "Fridge");
 	        productMap.put(2, "Washing Machine");
-	        productMap.put(3, "Tv");
+	        productMap.put(3, "Laptop");
 	       
 
 	        List<Map<String, Object>> productList = new ArrayList<>();
